@@ -60,7 +60,7 @@
 
 @if(auth()->user())
 
-    @if($check_subscription->has_susbs>0)
+    @if($check_subscription[0]->has_susbs>0)
 
 
         <div class="border border-success float-left" style="border-radius:5px;padding:10px;margin-left:18%;margin-bottom:20px;">
