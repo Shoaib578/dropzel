@@ -27,9 +27,9 @@ auth()->logout();
 return redirect()->route('login');
 })->name('logout');
 
-Route::get('/', [PostController::class,'index'])->name('home')->middleware('auth');
-Route::get('/product/{id}/show',[PostController::class,'show'])->name('show_product')->middleware('auth');
-Route::get('/product/search/{text}', [PostController::class,'search'])->name('search')->middleware('auth');
+Route::get('/', [PostController::class,'index'])->name('home');
+Route::get('/product/{id}/show',[PostController::class,'show'])->name('show_product');
+Route::get('/product/search/{text}', [PostController::class,'search'])->name('search');
 
 Route::get('/subscriptions', [UserSubscriptionController::class,'index'])->name('user_subscriptions')->middleware('auth');
 

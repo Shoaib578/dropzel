@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-@if($check_subscription[0]->has_susbs == 1)
+
 
 <div style="display:flex;flex-direction:row;flex-wrap:wrap;padding:100px;">
 @foreach($posts as $post)
@@ -197,18 +197,6 @@
 
 </div>
 
-@else
-                <center>
-                    <br>
-                    <br>
-            <h1>Need To Buy a Subscription</h1>
-            <p>Click Below To Buy a Subscription</p>
-            <a href="{{ route('user_subscriptions') }}" style="text-decoration:none">Buy Now</a>
-
-
-            </center>
-
-@endif
-                
+      
             
 @endsection

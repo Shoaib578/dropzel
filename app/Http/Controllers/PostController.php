@@ -22,13 +22,12 @@ class PostController extends Controller
         }
         $categories = Categories::get();
         $posts = DB::select("select *,(select count(*) from favorites where favorite_by=".auth()->user()->id." AND product_id=posts.id) as is_favorite from posts");
-        $check_subscription = DB::select("select *,(select count(*) from user_subscriptions where user_id=". auth()->user()->id ." and NOW() <= DATE(expiration_date) ) as has_susbs  from users where id=".auth()->user()->id."");
         
        
         return view('posts.index',[
             "posts"=>$posts,
             "categories"=>$categories,
-            "check_subscription"=>$check_subscription,
+           
         ]);
     }
 
@@ -36,14 +35,13 @@ class PostController extends Controller
         if(auth()->user()->is_admin == 1){
             return redirect()->route('admin_home');
         }
-        $check_subscription = DB::select("select *,(select count(*) from user_subscriptions where user_id=". auth()->user()->id ." and NOW() <= DATE(expiration_date) ) as has_susbs  from users where id=".auth()->user()->id."");
 
         $posts = DB::select("select *,(select count(*) from favorites where favorite_by=".auth()->user()->id." AND product_id=posts.id) as is_favorite from posts WHERE category='".$text."'");
         $categories = Categories::get();
         return view('posts.search',[
             "posts"=>$posts,
             "categories"=>$categories,
-            "check_subscription"=>$check_subscription,
+          
 
         ]);
     }
@@ -89,8 +87,9 @@ class PostController extends Controller
         $post=Post::find($id);
         $categories = Categories::get();
         $related_products = DB::select("SELECT * from posts where category='".$post->category."'");
-       
-        return view('posts.show_product',["post"=>$post,"categories"=>$categories,"related_products"=>$related_products]);
+        $check_subscription = DB::select("select *,(select count(*) from user_subscriptions where user_id=". auth()->user()->id ." and NOW() <= DATE(expiration_date) ) as has_susbs  from users where id=".auth()->user()->id."");
+
+        return view('posts.show_product',["post"=>$post,"categories"=>$categories,"related_products"=>$related_products,'check_subscription'=>$check_subscription]);
     }
 
     /**

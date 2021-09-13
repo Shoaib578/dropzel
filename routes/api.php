@@ -19,28 +19,33 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/get_posts',function(){
     $user_id = request('user_id');
     $result;
-    $check_subscription = DB::select("select *,(select count(*) from user_subscriptions where user_id=$user_id and NOW() <= DATE(expiration_date) ) as has_susbs  from users where id=$user_id");
     $posts = DB::select("select *,(select count(*) from favorites where favorite_by=$user_id AND product_id=posts.id) as is_favorite from posts");
     
     $categories = Categories::get();
-    if($check_subscription[0]->has_susbs == 1){
+  
         $result = [
-            "msg"=>'You can Access it',
+            
             "posts"=>$posts,
             "categories"=>$categories
         ];
 
         return $result;
-    }else{
-        $result = [
-            "msg"=>'You cant access it. Because you dont have any subscription',
-            "posts"=>[],
-            "categories"=>[]
-        ];
-
-        return $result;
-    }
+   
     
+});
+
+Route::get('/show_post',function(){
+    $user_id = request('user_id');
+    $product_id = request('product_id');
+    $categories = Categories::get();
+
+    $check_subscription = DB::select("select *,(select count(*) from user_subscriptions where user_id=$user_id and NOW() <= DATE(expiration_date) ) as has_susbs  from users where id=$user_id");
+    $post = DB::select("SELECT *,(select count(*) from favorites where favorite_by=$user_id AND product_id=posts.id) as is_favorite FROM posts where id=$product_id");
+    return [
+        "check_subscription"=>$check_subscription,
+        "post"=>$post,
+        "categories"=>$categories
+    ];
 });
 
 
@@ -104,28 +109,19 @@ $category = request('category');
 $user_id = request('user_id');
 
 $categories = Categories::get();
-$check_subscription = DB::select("select *,(select count(*) from user_subscriptions where user_id=$user_id and NOW() <= DATE(expiration_date) ) as has_susbs  from users where id=$user_id");
 
 $posts = $posts = DB::select("select *,(select count(*) from favorites where favorite_by=$user_id AND product_id=posts.id) as is_favorite from posts WHERE category='".$category."'");
 
 $categories = Categories::get();
-if($check_subscription[0]->has_susbs == 1){
+
 $result = [
-        "msg"=>'You can Access it',
+        
         "posts"=>$posts,
         "categories"=>$categories
         ];
     
         return $result;
-        }else{
-            $result = [
-                "msg"=>'You cant access it. Because you dont have any subscription',
-                "posts"=>[],
-                "categories"=>[]
-            ];
-    
-            return $result;
-        }
+       
 });
 
 

@@ -47,11 +47,11 @@
               <li class="nav-item ">
                 <a class="nav-link" href="/">Home</a>
               </li>
-
+              @if (auth()->user())
               <li class="nav-item ">
                 <a class="nav-link" href="{{ route('get_favorite_products') }}">Favorites</a>
               </li>
-
+              @endif
 
               <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -59,7 +59,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             @foreach($categories as $category)
-              <a class="dropdown-item" href="http://127.0.0.1:8000/product/search/{{ $category->name }}/">{{ $category->name }}</a>
+              <a class="dropdown-item" href="http://serene-escarpment-63273.herokuapp.com/product/search/{{ $category->name }}/">{{ $category->name }}</a>
              
             @endforeach
             
