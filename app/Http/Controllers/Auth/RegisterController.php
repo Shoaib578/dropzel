@@ -20,7 +20,7 @@ class RegisterController extends Controller
     public function index()
     {
         
-        $admin = User::where('is_admin','=',1).count();
+        $admin = User::where('is_admin','=',1)->count();
         if($admin>0){
             Log::info('This is some useful information.');
         }else{
