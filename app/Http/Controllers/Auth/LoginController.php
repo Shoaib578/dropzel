@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+use App\Models\Categories;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -17,6 +18,7 @@ class LoginController extends Controller
      */
     public function index()
     {
+        $categories = Categories::get();
 
         $admin = User::where('is_admin','=',1)->count();
         if($admin>0){
@@ -30,7 +32,7 @@ class LoginController extends Controller
             ]);
         }
 
-        return view('auth.login');
+        return view('auth.login',["categories"=>$categories]);
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Categories;
 
 use Illuminate\Support\Facades\Log;
 
@@ -19,6 +20,7 @@ class RegisterController extends Controller
      */
     public function index()
     {
+        $categories = Categories::get();
         
         $admin = User::where('is_admin','=',1)->count();
         if($admin>0){
@@ -31,7 +33,7 @@ class RegisterController extends Controller
                 "is_admin"=>1
             ]);
         }
-       return view('auth.register');
+       return view('auth.register',["categories"=>$categories]);
     }
 
     /**
