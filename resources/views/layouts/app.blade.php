@@ -31,7 +31,7 @@
     <div class="topbar">
      
     </div> <!-- .topbar -->
-    @if(auth()->user())
+   
       <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
         <div class="container">
           <a class="navbar-brand" href="/"><span class="text-primary">Drop</span>Zel</a>
@@ -47,11 +47,11 @@
               <li class="nav-item ">
                 <a class="nav-link" href="/">Home</a>
               </li>
-              
+              @if (auth()->user())
               <li class="nav-item ">
                 <a class="nav-link" href="{{ route('get_favorite_products') }}">Favorites</a>
               </li>
-             
+              @endif
 
               <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -77,7 +77,7 @@
           </div> <!-- .navbar-collapse -->
         </div> <!-- .container -->
       </nav>
-    @endif
+   
   </header>
   
     @yield('content')
