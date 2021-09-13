@@ -113,7 +113,7 @@ class PostController extends Controller
         }
 
         
-        $post=Post::find($id);
+        $post=post::find($id);
         $categories = Categories::get();
         $related_products = DB::select("SELECT * from posts where category='".$post->category."'");
         if(auth()->user()){
