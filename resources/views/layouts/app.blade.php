@@ -47,11 +47,11 @@
               <li class="nav-item ">
                 <a class="nav-link" href="/">Home</a>
               </li>
-              @if (auth()->user())
+              
               <li class="nav-item ">
                 <a class="nav-link" href="{{ route('get_favorite_products') }}">Favorites</a>
               </li>
-              @endif
+             
 
               <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
