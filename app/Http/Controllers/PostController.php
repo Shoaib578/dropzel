@@ -21,7 +21,14 @@ class PostController extends Controller
             return redirect()->route('admin_home');
         }
         $categories = Categories::get();
-        $posts = DB::select("select *,(select count(*) from favorites where favorite_by=".auth()->user()->id." AND product_id=posts.id) as is_favorite from posts");
+
+        if(auth()->user()){
+            $posts = DB::select("select *,(select count(*) from favorites where favorite_by=".auth()->user()->id." AND product_id=posts.id) as is_favorite from posts");
+
+        }else{
+            $posts = DB::select("select * from posts");
+
+        }
         
        
         return view('posts.index',[
@@ -35,8 +42,13 @@ class PostController extends Controller
         if(auth()->user()&&auth()->user()->is_admin == 1){
             return redirect()->route('admin_home');
         }
+        if(auth()->user()){
 
         $posts = DB::select("select *,(select count(*) from favorites where favorite_by=".auth()->user()->id." AND product_id=posts.id) as is_favorite from posts WHERE category='".$text."'");
+        }else{
+        $posts = DB::select("select *from posts WHERE category='".$text."'");
+
+        }
         $categories = Categories::get();
         return view('posts.search',[
             "posts"=>$posts,
@@ -87,9 +99,15 @@ class PostController extends Controller
         $post=Post::find($id);
         $categories = Categories::get();
         $related_products = DB::select("SELECT * from posts where category='".$post->category."'");
+        if(auth()->user()){
+
         $check_subscription = DB::select("select *,(select count(*) from user_subscriptions where user_id=". auth()->user()->id ." and NOW() <= DATE(expiration_date) ) as has_susbs  from users where id=".auth()->user()->id."");
 
         return view('posts.show_product',["post"=>$post,"categories"=>$categories,"related_products"=>$related_products,'check_subscription'=>$check_subscription]);
+        }else{
+        return view('posts.show_product',["post"=>$post,"categories"=>$categories,"related_products"=>$related_products]);
+
+        }
     }
 
     /**
