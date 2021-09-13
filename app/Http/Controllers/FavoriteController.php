@@ -16,6 +16,9 @@ class FavoriteController extends Controller
      */
     public function index()
     {
+        if(auth()->user()&&auth()->user()->is_admin == 1){
+            return redirect()->route('admin_home');
+        }
         $posts = DB::select("select *,(select count(*) from favorites where favorite_by=".auth()->user()->id." AND product_id=posts.id) as is_favorite from  favorites LEFT JOIN posts on posts.id=favorites.product_id WHERE favorite_by=".auth()->user()->id."");
         $check_subscription = DB::select("select *,(select count(*) from user_subscriptions where user_id=". auth()->user()->id ." and NOW() <= DATE(expiration_date) ) as has_susbs  from users where id=".auth()->user()->id."");
 
@@ -46,6 +49,9 @@ class FavoriteController extends Controller
      */
     public function store(Request $request,$product_id)
     {
+        if(auth()->user()&&auth()->user()->is_admin == 1){
+            return redirect()->route('admin_home');
+        }
         $user_id=auth()->user()->id;
         $id = $product_id;
 

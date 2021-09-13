@@ -17,7 +17,7 @@ class PostController extends Controller
     public function index()
     {
 
-        if(auth()->user()->is_admin == 1){
+        if(auth()->user()&&auth()->user()->is_admin == 1){
             return redirect()->route('admin_home');
         }
         $categories = Categories::get();
@@ -32,7 +32,7 @@ class PostController extends Controller
     }
 
     public function search($text){
-        if(auth()->user()->is_admin == 1){
+        if(auth()->user()&&auth()->user()->is_admin == 1){
             return redirect()->route('admin_home');
         }
 
@@ -79,7 +79,7 @@ class PostController extends Controller
     public function show($id)
     {   
 
-        if(auth()->user()->is_admin == 1){
+        if(auth()->user()&&auth()->user()->is_admin == 1){
             return redirect()->route('admin_home');
         }
 
