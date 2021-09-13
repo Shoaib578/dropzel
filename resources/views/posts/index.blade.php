@@ -27,20 +27,22 @@
                         ...
                     @endif
                 </a></h5>
-            <br>
-                <form action="{{ route('favorite_or_unfavorite_post',$post->id) }}" method="post">
-                @csrf
-            
-                <button type="submit" class="btn btn-primary float-right">  
-                    @if($post->is_favorite>0)
-                        UnFavorite
-                    @else
-                        Favorite
+                @if(auth()->user())
+                <br>
+                    <form action="{{ route('favorite_or_unfavorite_post',$post->id) }}" method="post">
+                    @csrf
+                
+                    <button type="submit" class="btn btn-primary float-right">  
+                        @if($post->is_favorite>0)
+                            UnFavorite
+                        @else
+                            Favorite
 
-                    @endif
-                </button>
-            
-                </form>
+                        @endif
+                    </button>
+                
+                    </form>
+                @endif
 
                 <hr>
                 Available Info
