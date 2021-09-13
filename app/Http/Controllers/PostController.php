@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\post;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
 
@@ -113,7 +113,7 @@ class PostController extends Controller
         }
 
         
-        $post=post::find($id);
+        $post=Post::find($id);
         $categories = Categories::get();
         $related_products = DB::select("SELECT * from posts where category='".$post->category."'");
         if(auth()->user()){
