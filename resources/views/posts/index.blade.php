@@ -4,7 +4,7 @@
 
 
 
-    @if($posts->count()>0)
+    @if($posts)
 
         <div style="display:flex;flex-direction:row;flex-wrap:wrap;padding:100px;">
         @foreach($posts as $post)
