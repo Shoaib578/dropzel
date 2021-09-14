@@ -58,7 +58,7 @@ Route::post('/register_user',function(){
 $name = request('name');
 $email = request('email');
 $password = request('password');
-return $name;
+
 
 $user = user::where('email','=',$email)->count();
         if($user>0){
