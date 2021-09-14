@@ -43,7 +43,7 @@ Route::get('/show_post',function(){
     $check_subscription = DB::select("select *,(select count(*) from user_subscriptions where user_id=$user_id and NOW() <= DATE(expiration_date) ) as has_susbs  from users where id=$user_id");
     $post = DB::select("SELECT *,(select count(*) from favorites where favorite_by=$user_id AND product_id=posts.id) as is_favorite FROM posts where id=$product_id");
     return [
-        "check_subscription"=>$check_subscription->has_susbs,
+        "check_subscription"=>$check_subscription[0]->has_susbs,
         "post"=>$post,
         "categories"=>$categories
     ];
