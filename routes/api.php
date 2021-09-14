@@ -9,6 +9,7 @@ use App\Models\UserSubscriptions;
 use App\Models\Categories;
 use App\Models\Favorite;
 use App\Models\Subscriptions;
+use Illuminate\Support\Facades\Hash;
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
