@@ -153,6 +153,12 @@ return [
 });
 
 
+Route::get('/list_all_categories',function(){
+return [
+    "categories"=>Categories::get()
+];
+});
+
 Route::get('/get_last_week_products',function(){
 $user_id = request('user_id');
 $posts = DB::select("select *,(select count(*) from favorites where favorite_by=$user_id AND product_id=posts.id) as is_favorite from posts where created_at>= now() -  interval '7 day' ");
