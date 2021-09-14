@@ -155,7 +155,7 @@ return [
 
 Route::get('/get_last_week_products',function(){
 $user_id = request('user_id');
-$posts = DB::select("select *,(select count(*) from favorites where favorite_by=$user_id AND product_id=posts.id) as is_favorite from posts where WEEK(posts.created_at)=WEEK(NOW())-1");
+$posts = DB::select("select *,(select count(*) from favorites where favorite_by=$user_id AND product_id=posts.id) as is_favorite from posts where created_at> now() -  interval 7 day");
 return [
     "posts"=>$posts
 ];
