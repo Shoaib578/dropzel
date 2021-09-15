@@ -65,11 +65,11 @@ class CategoryController extends Controller
         }
        
        
-        $request->image->move(public_path('/images'),$request->image);
+        $image_name = $request->image->move(public_path('/images'),$request->image);
 
         Categories::create([
             "name"=>$request->name,
-            "image"=>$request->image
+            "image"=>$request->$image_name
            
 
         ]);
