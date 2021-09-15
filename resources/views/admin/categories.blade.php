@@ -66,7 +66,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form method='post' action="{{ route('categories') }}">
+      <form method='post' action="{{ route('categories') }}" enctype="multipart/form-data">
       @csrf
 
       <div class="modal-body">

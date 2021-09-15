@@ -64,12 +64,12 @@ class CategoryController extends Controller
 
         }
        
-       
-        $request->image->move(public_path('/images'),$request->image);
+        $imageName = time().'.'.$request->image->getClientOriginalExtension();
+        $request->image->move(public_path('/images'),$imageName);
 
         Categories::create([
             "name"=>$request->name,
-            "image"=>$request->image
+            "image"=>$imageName
            
 
         ]);
