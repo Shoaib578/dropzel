@@ -63,7 +63,7 @@ class CategoryController extends Controller
         return redirect()->back()->with('status','Category Already Exist');
 
         }
-
+        dd($request->image);
         $imageName = time().'.'.$request->image->getClientOriginalExtension();
         $request->image->move(public_path('/images'),$imageName);
 
