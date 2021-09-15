@@ -111,7 +111,7 @@ $user_id = request('user_id');
 
 
 
-$posts = $posts = DB::select("select *,(select count(*) from favorites where favorite_by=$user_id AND product_id=posts.id) as is_favorite from posts WHERE category=$category");
+ $posts = DB::select("select *,(select count(*) from favorites where favorite_by=$user_id AND product_id=posts.id) as is_favorite from posts WHERE category=$category");
 
 
 

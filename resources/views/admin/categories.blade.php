@@ -18,6 +18,8 @@
     <tr>
      
       <th scope="col">Name</th>
+      <th scope="col">Image</th>
+
       <th scope="col">Actions</th>
      
     </tr>
@@ -27,6 +29,10 @@
       @foreach($categories as $category)
             <tr>
             <th scope="row">{{$category->name}}</th>
+            <th scope="row">
+              <image src="{{ asset( 'images/'.$category->image ) }}" style="width:100px;height:100px;"/>
+            </th>
+
             <td>
                 <a href="categories/{{$category->id}}/edit" class="btn btn-primary">Edit</a>
                 <a href="categories/{{$category->id}}/delete" class="btn btn-danger">Delete</a>
@@ -71,6 +77,19 @@
                     <input type="text" name="name" id="name" placeholder="Category name"  class="bg-gray-100 border-2 w-full  rounded-lg @error('name') border-red-500 @enderror form-control" value="{{ old('name') }}">
 
                     @error('name')
+                        <div class="text-red-500 mt-2 text-sm" style="color:red;">
+                            {{ $message }}
+                        </div>
+                    @enderror
+
+
+                    <br>
+
+                    <br>
+                    <label for="image" class="sr-only">Image</label>
+                    <input type="file" name="image" id="image" placeholder="Image"  class="bg-gray-100 border-2 w-full  rounded-lg @error('name') border-red-500 @enderror form-control" value="{{ old('name') }}">
+
+                    @error('image')
                         <div class="text-red-500 mt-2 text-sm" style="color:red;">
                             {{ $message }}
                         </div>

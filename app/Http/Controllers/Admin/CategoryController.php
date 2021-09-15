@@ -49,6 +49,7 @@ class CategoryController extends Controller
 
         $this->validate($request,[
             'name'=>'required|max:255',
+            'image'=>'required'
            
             
            
@@ -62,8 +63,13 @@ class CategoryController extends Controller
         return redirect()->back()->with('status','Category Already Exist');
 
         }
+
+        $imageName = time().'.'.$request->image->getClientOriginalExtension();
+        $request->image->move(public_path('/images'),$imageName);
+
         Categories::create([
             "name"=>$request->name,
+            "image"=>$imageName
            
 
         ]);
@@ -134,7 +140,11 @@ class CategoryController extends Controller
         if(auth()->user()->is_admin==0){
             return redirect()->route('home');
         }
-        Categories::where('id',$id)->delete();
+        $category=Categories::where('id',$id)->get();
+        $image_path = asset('images/'.$category->image);
+        File::delete($image_path);
+        $category->delete();
+
         return redirect()->back()->with('status','Category Deleted');
     }
 }
