@@ -69,7 +69,7 @@ class CategoryController extends Controller
 
         Categories::create([
             "name"=>$request->name,
-            "image"=>$imageName
+            "image"=>$request->image
            
 
         ]);
