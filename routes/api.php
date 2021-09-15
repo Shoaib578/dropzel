@@ -17,17 +17,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/get_posts',function(){
+Route::get('/get_all_products',function(){
     $user_id = request('user_id');
     $result;
     $posts = DB::select("select *,(select count(*) from favorites where favorite_by=$user_id AND product_id=posts.id) as is_favorite from posts");
     
-    $categories = Categories::get();
+  
   
         $result = [
             
-            "posts"=>$posts,
-            "categories"=>$categories
+            "products"=>$posts,
+            
         ];
 
         return $result;
@@ -35,17 +35,17 @@ Route::get('/get_posts',function(){
     
 });
 
-Route::get('/show_post',function(){
+Route::get('/view_product',function(){
     $user_id = request('user_id');
     $product_id = request('product_id');
-    $categories = Categories::get();
+    
 
     $check_subscription = DB::select("select *,(select count(*) from user_subscriptions where user_id=$user_id and NOW() <= DATE(expiration_date) ) as has_susbs  from users where id=$user_id");
     $post = DB::select("SELECT *,(select count(*) from favorites where favorite_by=$user_id AND product_id=posts.id) as is_favorite FROM posts where id=$product_id");
     return [
         "check_subscription"=>$check_subscription[0]->has_susbs,
-        "post"=>$post,
-        "categories"=>$categories
+        "product"=>$post,
+       
     ];
 });
 
@@ -109,16 +109,16 @@ Route::get('/search_product_by_category',function(){
 $category = request('category');
 $user_id = request('user_id');
 
-$categories = Categories::get();
+
 
 $posts = $posts = DB::select("select *,(select count(*) from favorites where favorite_by=$user_id AND product_id=posts.id) as is_favorite from posts WHERE category=$category");
 
-$categories = Categories::get();
+
 
 $result = [
         
-        "posts"=>$posts,
-        "categories"=>$categories
+        "products"=>$posts,
+       
         ];
     
         return $result;
@@ -163,7 +163,7 @@ Route::get('/get_last_week_products',function(){
 $user_id = request('user_id');
 $posts = DB::select("select *,(select count(*) from favorites where favorite_by=$user_id AND product_id=posts.id) as is_favorite from posts where created_at>= now() -  interval '7 day' ");
 return [
-    "posts"=>$posts
+    "products"=>$posts
 ];
 
 });
@@ -172,7 +172,7 @@ Route::get('/get_favorite_products',function(){
     $user_id = request('user_id');
     $posts = DB::select("select *,(select count(*) from favorites where favorite_by=$user_id AND product_id=posts.id) as is_favorite from  favorites LEFT JOIN posts on posts.id=favorites.product_id WHERE favorite_by=$user_id");
     return [
-        "posts"=>$posts
+        "products"=>$posts
     ];
     
     });
