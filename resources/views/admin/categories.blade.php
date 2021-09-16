@@ -30,7 +30,7 @@
             <tr>
             <th scope="row">{{$category->name}}</th>
             <th scope="row">
-              <image src="{{ asset( 'images/'.$category->image ) }}" style="width:100px;height:100px;"/>
+              <image src="http://serene-escarpment-63273.herokuapp.com/$category->image" style="width:100px;height:100px;"/>
             </th>
 
             <td>
