@@ -26,12 +26,27 @@ body {
   line-height: 1.5;
   color: #343531;
 }
-
-a {
-  color: #07be94;
-  text-decoration: none;
-  background-color: transparent;
+.nav-link{
+  color: white;
+ 
 }
+.nav-link:hover{
+ color: #17aa35;
+ text-decoration: underline;
+ text-decoration-color: green;
+}
+
+.btn_login{
+  padding: 7px;
+  border-radius: 7px;
+  border:2px solid white;
+  
+}
+.btn_login:hover{
+  background-color: grey;
+ 
+}
+
 .MultiCarousel { float: left; overflow: hidden; padding: 15px; width: 100%; position:relative; }
     .MultiCarousel .MultiCarousel-inner { transition: 1s ease all; float: left; }
         .MultiCarousel .MultiCarousel-inner .item { float: left;}
@@ -41,10 +56,7 @@ a {
     .MultiCarousel .rightLst { right:0; }
     
         .MultiCarousel .leftLst.over, .MultiCarousel .rightLst.over { pointer-events: none; background:#ccc; }
-a:hover {
-  color: #03a882;
-  text-decoration: underline;
-}
+
 
 
 .text-xs {
@@ -1385,14 +1397,35 @@ a.text-dark:hover, a.text-dark:focus {
 @media (min-width: 768px) {
   .card-service {
     width: 260px;
+  
   }
 }
 
-
+.buy_subs{
+ 
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: white;
+  
+  text-align: center;
+}
+.footer {
+  
+  left: 0;
+  width: 100%;
+  bottom: 0;
+  position: fixed;
+  background-color: black;
+  height: 30px;
+  color: gray;
+  text-align: center;
+}
 .card-blog {
   position: relative;
-  display: block;
+  
   max-width: 264px;
+  
   margin: 0 auto;
   background-color: #fff;
   border-radius: 4px;

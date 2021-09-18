@@ -66,12 +66,12 @@ class CreatePostsTable extends Migration
             $table->text('influencer9_image')->nullable();
             
 
-            $table->integer('cpa');
-            $table->integer('net');
+            $table->float('cpa');
+            $table->float('net');
             $table->integer('orders');
             $table->integer('votes');
-            $table->integer('reviews');
-            $table->integer('rating');
+            $table->float('reviews');
+            $table->float('rating');
             $table->integer('likes');
             $table->integer('comments');
             $table->integer('shares');

@@ -3,9 +3,9 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 @section('content')
-  <br>
-  <br>
-
+ <center>
+ 
+  <div style="background-color:white;width:80%">
     <center>
 <div class="w3-content w3-display-container border">
     @if($post->product_image1)
@@ -41,20 +41,22 @@
 <br >
 
 
+<div style="margin-left:7%">
+<h2 style="float:left">{{ $post->title }}</h2>
+<br />
+<br />
 
-<h2 style="margin-left:17%;color:black;">{{ $post->title }}</h2>
-
-<p style="margin-left:17%;color:black;background-color:gray;width:70px;border-radius:20px;height:20px;justify-content:center;display:flex;align-items:center">{{ $post->category }}</p>
+<p style="float:left;color:black;background-color:gray;width:70px;border-radius:20px;height:20px;justify-content:center;display:flex;align-items:center">{{ $post->category }}</p>
 
 <br >
 <br >
 
-<b style="margin-left:17%;color:black;">Description : </b>
+<b style="float:left">Description : </b>
 <br >
 <br >
 
-<p style="margin-left:17%;color:black;width:70%;">{{ $post->body }}</p>
-
+<p style="float:left">{{ $post->body }}</p>
+</div>
 <br>
 <br>
 
@@ -62,8 +64,9 @@
 
     @if($check_subscription[0]->has_susbs>0)
 
-
-        <div class="border border-success float-left" style="border-radius:5px;padding:10px;margin-left:18%;margin-bottom:20px;">
+    <br>
+<br>
+        <div class="border border-success float-left" style="border-radius:5px;padding:10px;margin-left:7%;margin-bottom:20px;">
         <center>
             <h3>Your Profit & Cost</h3>
             
@@ -96,7 +99,7 @@
 
 
 
-        <div class="border border-success float-right" style="border-radius:5px;padding:10px;margin-right:18%;margin-bottom:20px;">
+        <div class="border border-success float-right" style="border-radius:5px;padding:10px;margin-bottom:20px;margin-right:7%">
         <center>
             <h3>SATURATION INSPECTOR</h3>
             
@@ -137,10 +140,10 @@
         <br>
 
 
-        <b style="color:black;margin-left:18%;">Available Info : </b>
+        <b style="color:black;margin-left:7%;float:left">Available Info : </b>
         <br>
 
-        <div style="display:flex;flex-direction:row;padding:15px;margin-left:18%;flex-wrap:wrap;">
+        <div style="display:flex;flex-direction:row;padding:15px;margin-left:7%;flex-wrap:wrap;">
                     @if($post->influencer1 && $post->influencer1_link && $post->influencer1_image)
                     <a href="{{ $post->influencer1_link }}" style="text-decoration:none;">   
                         <div style="display:flex;flex-direction:row;">
@@ -291,8 +294,8 @@
 
                 <hr>
                 
-                <center>
-                <div style="flex-direction:row;display:flex;padding:50px;flex-wrap:wrap;margin-left:14%">
+          
+                <div style="flex-direction:row;display:flex;padding:50px;flex-wrap:wrap;">
 
                 <div>
 
@@ -435,7 +438,7 @@
 
 
                 </div>
-                </center>
+               
 
 
 
@@ -451,8 +454,10 @@
             
             
             <!-- Related Products Start -->
-            <div class="container" style="margin-left:14%">
+            <div class="container " >
             <div class="row">
+            <h3 style="float:left;margin-left:15px">Related Products</h3>
+            <br>
                 <div class="MultiCarousel" data-items="1,3,5,6" data-slide="1" id="MultiCarousel"  data-interval="1000">
                     <div class="MultiCarousel-inner">
                         @foreach($related_products as $related)
@@ -494,11 +499,18 @@
         <center>
                         <br>
                         <br>
+                        <div style="width:80%;">
                 <h1>You Will Need To Buy a Subscription To Be Able To Explore More</h1>
                 <p>Click Below To Buy a Subscription</p>
-                <a href="{{ route('user_subscriptions') }}" style="text-decoration:none">Buy Now</a>
+                <a href="{{ route('user_subscriptions') }}" class="btn btn-success" style="text-decoration:none">Buy Now</a>
+    <br>
+    <br>
 
+    <br>
+    <br><br>
+    <br>
 
+                </div>
             </center>
         @endif
     @else
@@ -515,6 +527,7 @@
     <!-- Related Products End -->
 
 
+</div>
 
 
 
@@ -523,7 +536,7 @@
 
 
 
-
+</center>
 
 
 

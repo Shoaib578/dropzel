@@ -5,11 +5,18 @@
 
 
     @if($posts)
-
-        <div style="display:flex;flex-direction:row;flex-wrap:wrap;padding:100px;">
+        <br />
+        <center>
+            <h3 style="color:white">Dropzel is a curation of the best new products, every day.</h3>
+        </center>
+        <div class="container">
+            <div class="row"  >
         @foreach($posts as $post)
-        <div class="col-lg-4 py-2 wow zoomIn" >
-            <div class="card-blog">
+        <div class="col-4 mt-5">
+
+        
+        <div class="wow zoomIn" >
+            <div class="card-blog" >
                 <div class="header">
                 <div class="post-category">
                     <a >{{$post->category}}</a>
@@ -18,7 +25,7 @@
             
 
                 <a href="/product/{{ $post->id }}/show" class="post-thumb">
-                    <img src="{{ asset( 'images/'.$post->product_image1 ) }}" alt="">
+                    <img src="{{ asset( 'images/'.$post->product_image1 ) }}" alt="" >
                 </a>
                 </div>
                 <div class="body">
@@ -196,10 +203,19 @@
                 </div>
                 
                 </div>
+                <hr />
+               
+                <center>
+                <a href="/product/{{ $post->id }}/show" class="btn btn-success">Show Me The Money</a>
+
+                </center>
+
+                <br />
+            </div>
             </div>
             </div>
         @endforeach
-
+        </div>
 
 
 
@@ -218,6 +234,29 @@
 
                     
                
+    @if(!auth()->user())
+      <div class="buy_subs">
+      <center>
+        <div style="width:80%">
+        
+      <h2>We are manually adding winning products on a daily basis.
+  Stop wasting money on bad products</h2>
+  <p style="color:gray">Wanna be a successful store owner? Subscribe now and get access to our full winning products list with a kickass detailed analytics.</p>
 
+
+  <br>
+  <a href="{{ route('register') }}" class="btn btn-success">Join Now Its Free</a>
+  <br>
+  <br>
+
+  <br>
+  <br>
+
+
+        </div>
+        </center>
+      
+      </div>
+  @endif
     
 @endsection

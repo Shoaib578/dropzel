@@ -3,7 +3,8 @@
 @section('content')
   <br>
   <br>
-
+   
+        
     <center>
 <div class="w3-content w3-display-container border">
     @if($post->product_image1)
@@ -433,6 +434,7 @@
 
         </div>
         </center>
+     
 
 <script>
 var slideIndex = 1;
